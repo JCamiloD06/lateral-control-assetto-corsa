@@ -1,0 +1,670 @@
+{
+  "semilla": 20260918,
+  "n_por_controlador": 20,
+  "perfil": "nominal",
+  "generado": "2026-09-18T13:45:26",
+  "metodo": "numpy.random.default_rng(semilla).uniform sobre cada rango, en el orden pure_pursuit, stanley y mpc_cinematico, y dentro de cada uno en el orden de los parámetros del archivo de rangos",
+  "numpy": "2.5.3",
+  "rangos": {
+    "_descripcion": "Rangos de busqueda de la fase 4, escritos antes de generar el plan. Los usa lanzador/plan_sintonia.py. Escala lineal salvo donde se declare log.",
+    "_fecha": "2026-09-18",
+    "_retardo_efectivo_s": 0.145,
+    "_nota_retardo": "Un ciclo de plataforma 0.05, medio periodo de muestreo 0.025 y retardo de direccion 0.07 identificado con telemetria el 2026-09-18, analisis/planta_lateral.py.",
+    "_criterio_pure_pursuit": "Margen de fase de al menos 27 grados en el lazo lateral linealizado a 180 km/h, planta e_y = v^2 delta/(L s^2) con el retardo efectivo. kv 0.45 da 27.5 grados a 50 m/s y 32.3 a 15 m/s con L0 de 1.5 m. kv 0.95 da 46.9 y 48.1. Por debajo de kv 0.3 el margen cae a 13 grados y el lazo oscila. El valor verificado en pista, L0 2.5 y kv 0.6, queda dentro con margen de 37 grados.",
+    "_criterio_stanley": "Margen de fase del lazo de primer orden k exp(-theta s)/s, donde el termino de orientacion se cancela en el eje delantero. k 0.3 da 87.5 grados y constante de tiempo de 3.33 s. k 3.5 da 60.9 grados y 0.29 s. El valor verificado en pista, k 1.0, da 81.7 grados.",
+    "_criterio_mpc": "El analisis lineal no sirve para el MPC. Con sus ganancias equivalentes extraidas del QP sin restricciones, el mismo lazo predice margen negativo a 50 km/h para los pesos que si funcionaron en pista, igual que la simulacion descartada el 2026-09-18. El rango se ancla en la ganancia equivalente sobre e_y, que con estos limites va de 2.20 a 10.69 grados por metro a 50 m/s, es decir un factor 2.1 por encima y 2.3 por debajo del valor verificado en pista de 5.09 con Qpsi 50, Rdelta 1 y Rddelta 10.",
+    "_nota_qy": "Qy no se muestrea. Multiplicar los cuatro pesos por una constante no cambia el optimo del QP, asi que solo importan las razones entre ellos.",
+    "_nota_epsilon": "epsilon_ms de Stanley no es parametro de sintonia. Queda en 1.0 m/s como constante numerica que evita la division por cero por debajo de la velocidad minima de direccion, 5 km/h.",
+    "_criterio_seleccion": "Entre las 20 vueltas de cada controlador gana el menor RMSE de e_y, descartando antes las que incumplan los topes de abajo. Si dos quedan dentro del ruido entre vueltas, 0.005 a 0.012 m medido en la fase 3, gana la de menor esfuerzo de direccion. Fijado el 2026-09-18, antes de generar el plan.",
+    "seleccion": {
+      "descartar_vuelta_no_completada": true,
+      "descartar_ruedas_fuera": true,
+      "razon_esfuerzo_max": 4.0,
+      "p95_tasa_max_rad_s": 0.26,
+      "_definicion_razon_esfuerzo": "RMS de la tasa de direccion aplicada dividida por el RMS de la tasa del angulo geometrico de la trazada, atan(L kappa) derivado en el tiempo con la velocidad de la misma vuelta. Se calcula por vuelta, entre los dos cruces de meta.",
+      "_origen_del_tope": "El RMS geometrico en Monza es 0.0241 rad/s. Las vueltas de verificacion dan razon 0.56 en Pure Pursuit, 0.93 a 0.97 en Stanley y 1.83 a 2.04 en el MPC. El tope de 4.0 es el doble del valor mas alto observado, elegido de antemano. No sale de ninguna teoria, es un margen declarado antes de correr para que ningun controlador quede descartado por su nivel normal de actividad y para cortar solo la oscilacion.",
+      "_origen_p95": "0.26 rad/s es la mitad del limite de tasa de la plataforma, 0.5236 rad/s. El p95 mas alto observado es 0.103 en el MPC."
+    },
+    "sesion": 0,
+    "controladores": {
+      "pure_pursuit": {
+        "L0_m": {
+          "min": 1.5,
+          "max": 5.0,
+          "escala": "lineal"
+        },
+        "kv_s": {
+          "min": 0.45,
+          "max": 0.95,
+          "escala": "lineal"
+        }
+      },
+      "stanley": {
+        "k": {
+          "min": 0.3,
+          "max": 3.5,
+          "escala": "lineal"
+        }
+      },
+      "mpc_cinematico": {
+        "Qpsi": {
+          "min": 10.0,
+          "max": 200.0,
+          "escala": "log"
+        },
+        "Rdelta": {
+          "min": 0.1,
+          "max": 10.0,
+          "escala": "log"
+        },
+        "Rddelta": {
+          "min": 1.0,
+          "max": 100.0,
+          "escala": "log"
+        }
+      }
+    }
+  },
+  "corridas": [
+    {
+      "id_plan": "sint_pure_pursuit_01",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 4.862155,
+        "kv_s": 0.49325
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_02",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 4.634378,
+        "kv_s": 0.915482
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_03",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 4.909323,
+        "kv_s": 0.940272
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_04",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 4.864384,
+        "kv_s": 0.585976
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_05",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 4.892109,
+        "kv_s": 0.518323
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_06",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 1.957574,
+        "kv_s": 0.913314
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_07",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 3.371492,
+        "kv_s": 0.521014
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_08",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 4.23124,
+        "kv_s": 0.608887
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_09",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 1.647441,
+        "kv_s": 0.568852
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_10",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 4.863424,
+        "kv_s": 0.485865
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_11",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 4.702084,
+        "kv_s": 0.730762
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_12",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 3.318734,
+        "kv_s": 0.471439
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_13",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 4.996119,
+        "kv_s": 0.609067
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_14",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 4.307998,
+        "kv_s": 0.562791
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_15",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 2.182824,
+        "kv_s": 0.475382
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_16",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 2.733411,
+        "kv_s": 0.874316
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_17",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 3.304878,
+        "kv_s": 0.654156
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_18",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 3.08168,
+        "kv_s": 0.627305
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_19",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 2.770288,
+        "kv_s": 0.650213
+      }
+    },
+    {
+      "id_plan": "sint_pure_pursuit_20",
+      "controlador": "pure_pursuit",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "L0_m": 1.760397,
+        "kv_s": 0.735885
+      }
+    },
+    {
+      "id_plan": "sint_stanley_01",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 0.527256
+      }
+    },
+    {
+      "id_plan": "sint_stanley_02",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 2.866525
+      }
+    },
+    {
+      "id_plan": "sint_stanley_03",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 3.316549
+      }
+    },
+    {
+      "id_plan": "sint_stanley_04",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 1.797657
+      }
+    },
+    {
+      "id_plan": "sint_stanley_05",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 1.220957
+      }
+    },
+    {
+      "id_plan": "sint_stanley_06",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 1.849974
+      }
+    },
+    {
+      "id_plan": "sint_stanley_07",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 1.550653
+      }
+    },
+    {
+      "id_plan": "sint_stanley_08",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 0.703709
+      }
+    },
+    {
+      "id_plan": "sint_stanley_09",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 2.922298
+      }
+    },
+    {
+      "id_plan": "sint_stanley_10",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 1.629249
+      }
+    },
+    {
+      "id_plan": "sint_stanley_11",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 3.333012
+      }
+    },
+    {
+      "id_plan": "sint_stanley_12",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 1.046205
+      }
+    },
+    {
+      "id_plan": "sint_stanley_13",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 1.192164
+      }
+    },
+    {
+      "id_plan": "sint_stanley_14",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 1.760709
+      }
+    },
+    {
+      "id_plan": "sint_stanley_15",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 3.158202
+      }
+    },
+    {
+      "id_plan": "sint_stanley_16",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 0.43389
+      }
+    },
+    {
+      "id_plan": "sint_stanley_17",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 2.595819
+      }
+    },
+    {
+      "id_plan": "sint_stanley_18",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 2.120344
+      }
+    },
+    {
+      "id_plan": "sint_stanley_19",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 0.885889
+      }
+    },
+    {
+      "id_plan": "sint_stanley_20",
+      "controlador": "stanley",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "k": 2.037435
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_01",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 16.648276,
+        "Rdelta": 0.596022,
+        "Rddelta": 18.414591
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_02",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 35.051082,
+        "Rdelta": 3.978608,
+        "Rddelta": 6.371656
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_03",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 18.554364,
+        "Rdelta": 0.675653,
+        "Rddelta": 50.52935
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_04",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 63.425046,
+        "Rdelta": 0.374359,
+        "Rddelta": 25.774942
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_05",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 121.428212,
+        "Rdelta": 1.203708,
+        "Rddelta": 8.73255
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_06",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 59.441363,
+        "Rdelta": 1.120312,
+        "Rddelta": 45.602337
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_07",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 17.033259,
+        "Rdelta": 7.21294,
+        "Rddelta": 7.621431
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_08",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 35.541366,
+        "Rdelta": 0.557041,
+        "Rddelta": 1.776374
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_09",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 33.167603,
+        "Rdelta": 8.147265,
+        "Rddelta": 3.092056
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_10",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 32.43766,
+        "Rdelta": 0.966735,
+        "Rddelta": 10.995276
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_11",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 16.162746,
+        "Rdelta": 7.314453,
+        "Rddelta": 10.336387
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_12",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 14.927666,
+        "Rdelta": 1.379796,
+        "Rddelta": 2.763143
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_13",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 92.496052,
+        "Rdelta": 0.272964,
+        "Rddelta": 16.785617
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_14",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 19.198572,
+        "Rdelta": 1.523499,
+        "Rddelta": 97.643122
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_15",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 36.789379,
+        "Rdelta": 0.462657,
+        "Rddelta": 74.047385
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_16",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 34.265497,
+        "Rdelta": 0.316892,
+        "Rddelta": 25.17916
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_17",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 22.328578,
+        "Rdelta": 5.344166,
+        "Rddelta": 40.728259
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_18",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 95.095328,
+        "Rdelta": 0.279092,
+        "Rddelta": 1.802378
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_19",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 46.251102,
+        "Rdelta": 0.158196,
+        "Rddelta": 24.478868
+      }
+    },
+    {
+      "id_plan": "sint_mpc_cinematico_20",
+      "controlador": "mpc_cinematico",
+      "perfil": "nominal",
+      "sesion": 0,
+      "parametros": {
+        "Qpsi": 23.858164,
+        "Rdelta": 6.75505,
+        "Rddelta": 99.375002
+      }
+    }
+  ]
+}
