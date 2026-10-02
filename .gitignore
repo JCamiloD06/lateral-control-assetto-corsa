@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 data/
 Model Predictive Control/
+results/
+P00_control_lateral/sintonia_fase4/
+P00_control_lateral/piloto_fase5/
+P00_control_lateral/resultados_campana/
