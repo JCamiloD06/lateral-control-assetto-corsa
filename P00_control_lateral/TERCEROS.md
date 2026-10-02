@@ -14,15 +14,13 @@ Trial Steer no incluye ni reivindica la autoría de los componentes de esta list
 
 ## Librerías de Python
 
-Se instalan desde `requirements.txt`, y en el ejecutable van dentro de la carpeta `_internal`. Licencias verificadas en los metadatos de los paquetes instalados el 24 de septiembre de 2026.
+Se instalan desde `requirements.txt`. Licencias verificadas en los metadatos de los paquetes instalados el 24 de septiembre de 2026.
 
 * numpy, licencia BSD de 3 cláusulas, con componentes bajo licencias 0BSD, MIT, Zlib y CC0.
 * scipy, licencia BSD.
 * osqp, licencia Apache 2.0.
 * pyvjoy, licencia MIT.
-* matplotlib, licencia propia de matplotlib basada en la de la Python Software Foundation, solo para las gráficas.
-* PyInstaller, licencia GPL 2 o posterior con una excepción que permite distribuir el ejecutable generado, solo para construir el ejecutable.
-* Python y tkinter, licencia de la Python Software Foundation.
+* Python, licencia de la Python Software Foundation.
 
 ## Estructura de la memoria compartida de Assetto Corsa
 

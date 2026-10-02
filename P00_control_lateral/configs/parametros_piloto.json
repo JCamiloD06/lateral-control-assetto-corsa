@@ -1,5 +1,5 @@
 {
-  "_descripcion": "Parametros del piloto, fase 5. Se escriben antes de generar el plan. Los usa lanzador/plan_piloto.py.",
+  "_descripcion": "Parametros del piloto, fase 5. Se escriben antes de generar el plan.",
   "_fecha": "2026-09-19",
   "_orden": "Primero el ajuste del perfil base y despues la repetibilidad. Cambiar grip_usage_factor cambia los tres perfiles, incluido el nominal, asi que la repetibilidad solo tiene sentido con el valor ya fijado.",
   "sesion": 0,

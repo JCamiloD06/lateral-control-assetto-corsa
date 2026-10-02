@@ -1,5 +1,5 @@
 {
-  "_descripcion": "Fase 5, corrida pil_ajuste_76_mpc_cinematico del plan del piloto. grip_usage_factor 0.76. Generada por lanzador/plan_piloto.py. NO es configuración de campaña.",
+  "_descripcion": "Fase 5, corrida pil_ajuste_76_mpc_cinematico del plan del piloto. grip_usage_factor 0.76. Configuración del plan del piloto. NO es configuración de campaña.",
   "ts_s": 0.05,
   "trazada": {
     "csv": "Model Predictive Control/Python/monza_fast_lane.csv",

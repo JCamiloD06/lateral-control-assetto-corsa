@@ -1,5 +1,5 @@
 {
-  "_descripcion": "Rangos de busqueda de la fase 4, escritos antes de generar el plan. Los usa lanzador/plan_sintonia.py. Escala lineal salvo donde se declare log.",
+  "_descripcion": "Rangos de busqueda de la fase 4, escritos antes de generar el plan. Escala lineal salvo donde se declare log.",
   "_fecha": "2026-09-18",
   "_retardo_efectivo_s": 0.145,
   "_nota_retardo": "Un ciclo de plataforma 0.05, medio periodo de muestreo 0.025 y retardo de direccion 0.07 identificado con telemetria el 2026-09-18, analisis/planta_lateral.py.",

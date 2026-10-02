@@ -1,0 +1,11 @@
+﻿orden,id_plan,sesion,controlador,perfil,retardo_ciclos,etiqueta,comando,completada,observaciones
+1,q01,1,mpc_retardo,conservador,1,retardo1,py -3.14 P00_control_lateral/ejecutar_corrida_retardo.py --controlador mpc_retardo --perfil conservador --sesion 1 --fase prueba --etiqueta retardo1 --id-plan q01 --retardo-ciclos 1,,
+2,q02,1,mpc_retardo,nominal,1,retardo1,py -3.14 P00_control_lateral/ejecutar_corrida_retardo.py --controlador mpc_retardo --perfil nominal --sesion 1 --fase prueba --etiqueta retardo1 --id-plan q02 --retardo-ciclos 1,,
+3,q03,2,mpc_retardo,conservador,1,retardo1,py -3.14 P00_control_lateral/ejecutar_corrida_retardo.py --controlador mpc_retardo --perfil conservador --sesion 2 --fase prueba --etiqueta retardo1 --id-plan q03 --retardo-ciclos 1,,
+4,q04,2,mpc_retardo,nominal,1,retardo1,py -3.14 P00_control_lateral/ejecutar_corrida_retardo.py --controlador mpc_retardo --perfil nominal --sesion 2 --fase prueba --etiqueta retardo1 --id-plan q04 --retardo-ciclos 1,,
+5,q05,3,mpc_retardo,conservador,1,retardo1,py -3.14 P00_control_lateral/ejecutar_corrida_retardo.py --controlador mpc_retardo --perfil conservador --sesion 3 --fase prueba --etiqueta retardo1 --id-plan q05 --retardo-ciclos 1,,
+6,q06,3,mpc_retardo,nominal,1,retardo1,py -3.14 P00_control_lateral/ejecutar_corrida_retardo.py --controlador mpc_retardo --perfil nominal --sesion 3 --fase prueba --etiqueta retardo1 --id-plan q06 --retardo-ciclos 1,,
+7,q07,4,mpc_retardo,nominal,1,retardo1,py -3.14 P00_control_lateral/ejecutar_corrida_retardo.py --controlador mpc_retardo --perfil nominal --sesion 4 --fase prueba --etiqueta retardo1 --id-plan q07 --retardo-ciclos 1,,
+8,q08,4,mpc_retardo,conservador,1,retardo1,py -3.14 P00_control_lateral/ejecutar_corrida_retardo.py --controlador mpc_retardo --perfil conservador --sesion 4 --fase prueba --etiqueta retardo1 --id-plan q08 --retardo-ciclos 1,,
+9,q09,5,mpc_retardo,conservador,1,retardo1,py -3.14 P00_control_lateral/ejecutar_corrida_retardo.py --controlador mpc_retardo --perfil conservador --sesion 5 --fase prueba --etiqueta retardo1 --id-plan q09 --retardo-ciclos 1,,
+10,q10,5,mpc_retardo,nominal,1,retardo1,py -3.14 P00_control_lateral/ejecutar_corrida_retardo.py --controlador mpc_retardo --perfil nominal --sesion 5 --fase prueba --etiqueta retardo1 --id-plan q10 --retardo-ciclos 1,,

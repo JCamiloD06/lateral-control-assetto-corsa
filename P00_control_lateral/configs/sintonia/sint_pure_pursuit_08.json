@@ -1,5 +1,5 @@
 {
-  "_descripcion": "Fase 4, corrida sint_pure_pursuit_08 del plan de sintonía con semilla 20260918. Generada por lanzador/plan_sintonia.py. NO es configuración de campaña.",
+  "_descripcion": "Fase 4, corrida sint_pure_pursuit_08 del plan de sintonía con semilla 20260918. Configuración del plan de sintonía. NO es configuración de campaña.",
   "ts_s": 0.05,
   "trazada": {
     "csv": "Model Predictive Control/Python/monza_fast_lane.csv",

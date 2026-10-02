@@ -20,12 +20,12 @@ The same platform is distributed as the software TrialSteer, https://github.com/
 | Path | Content |
 |---|---|
 | `P00_control_lateral/ejecutar_corrida.py` | Runs one lap with a lateral controller and a speed profile, and writes its record |
+| `P00_control_lateral/ejecutar_corrida_retardo.py`, `correr_plan_retardo.py` | Runs of the post hoc delay compensation with the MPC of `controladores/mpc_retardo.py` |
 | `P00_control_lateral/controladores` | Pure Pursuit, Stanley and the kinematic MPC |
 | `P00_control_lateral/plataforma` | Shared memory reader, reference path and projection, speed profile, longitudinal PI, common steering interface, vJoy output, lap tracking and run recorder |
-| `P00_control_lateral/lanzador` | Generators of the tuning, pilot and campaign plans, with fixed seeds |
 | `P00_control_lateral/configs/base.json` | Configuration frozen before the campaign, with the parameters of the three controllers, the PI, the planner and the actuation limits |
 | `P00_control_lateral/configs/sintonia`, `piloto` | One configuration per tuning run and per pilot run |
-| `P00_control_lateral/configs/plan_*.json`, `rangos_sintonia.json`, `parametros_piloto.json` | Run plans of the study as they were executed, and the rules used to generate them |
+| `P00_control_lateral/configs/plan_*.json`, `rangos_sintonia.json`, `parametros_piloto.json` | Run plans of the study as they were executed, with the ranges and parameters they were built from |
 | `P00_control_lateral/configs/sesion_ac`, `juego_ac.json` | Game settings used in every session |
 
 ## Reference path
@@ -61,8 +61,15 @@ The run ends when the measured lap is completed and writes a folder in `data/raw
 | Tuning | 60, 20 per controller on the nominal profile | `configs/plan_sintonia.json` and `configs/sintonia` |
 | Pilot | 36 | `configs/plan_piloto.json` and `configs/piloto` |
 | Campaign | 90, 3 controllers by 3 profiles by 10 sessions | `configs/plan_campana.json` with `base.json` |
+| Post hoc delay compensation | 24, 10 with d = 4, 10 with d = 1 and 4 control laps of the original MPC | `configs/plan_retardo.csv` and `configs/plan_retardo_1ciclo.csv` with `base.json` |
 
-The campaign order was generated once with seed 20260915 by `lanzador/plan.py` and stored in `configs/plan_campana.json`. Each session runs its nine combinations in the stored order, and each entry gives the controller, the profile, the session and the plan identifier for the command above.
+The campaign order was drawn once with seed 20260915 before the campaign and stored in `configs/plan_campana.json`. Each session runs its nine combinations in the stored order, and each entry gives the controller, the profile, the session and the plan identifier for the command above.
+
+The delay compensation runs use `controladores/mpc_retardo.py`, the same MPC with its error state projected d control cycles ahead before each optimization. `ejecutar_corrida_retardo.py` runs one lap with it and accepts `--retardo-ciclos`, and `correr_plan_retardo.py` prepares the game and runs the laps of a plan in order, for example
+
+```
+python P00_control_lateral/correr_plan_retardo.py --plan P00_control_lateral/configs/plan_retardo_1ciclo.csv
+```
 
 ## Notes
 
